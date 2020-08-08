@@ -62,10 +62,13 @@ while True:
         log.debug(f'[INFO] [Func: on_message] MessageObj: {message}')
 
         if message.content == "!ping":
-            await message.channel.send("Pong! :)")\
+            await message.channel.send("Pong! :)")
 
         if message.content == "!marco":
             await message.channel.send("Polo! :)")
+
+        if message.content == "!pong":
+            await message.channel.send("Ping! :)")
 
         log.debug('[INFO] passed the filter')
 
