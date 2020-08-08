@@ -18,7 +18,7 @@ import os
 _CURRENT_DIR = os.path.dirname(__file__)
 _TOKEN_FILE = os.path.join(_CURRENT_DIR, "res", "textfiles", 'token.txt')
 
-_CLIENT_ID_NUM = 741736865220263978
+_CLIENT_ID_NUM = 741748027542208632
 _GUILD_ID_NUM = 718624993470316554
 
 
