@@ -17,12 +17,14 @@ import encrypt_token as et
 
 import discord
 import RPS
+from sinner_circle import sinnerCircle as sc
 import bot
 import log
 
 client = discord.Client()
 guild = client.get_guild(718624993470316554)
 _PLAYING = False
+userPlaying = None
 battle_cries = {
         731572939434098691 : "https://tenor.com/view/smashbros-lucina-gif-14611011", #Lucina
         731573113325879407 : "https://i.gifer.com/777O.gif", #Wario
@@ -97,18 +99,23 @@ while True:
             log.debug(message.author.roles)
 
         if message.content == "!rps":
-            global _PLAYING
-            if not _PLAYING:
+            global _PLAYING, userPlaying
+            if not _PLAYING and userPlaying is None:
                 _PLAYING = True
+                userPlaying = message.author
                 await RPS.rockPaperScissors(client,message)
                 _PLAYING = False
+                userPlaying = None
             else:
+                await message.channel.send(f"{userPlaying.nick} is playing with me right now")
                 return
+
 
         log.debug('[INFO] passed the filter')
 
         # Created event passed Message object to use for response of bot to discord client
-
+        if message.author.id == 719199208166522881:
+            await sc(message)
 
 
 

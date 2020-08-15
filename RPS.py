@@ -12,11 +12,14 @@ async def rockPaperScissors(client : discord.Client, message : discord.Message):
         if userWins == 2 or botWins == 2:
             break
 
-        await message.channel.send("Choose your weapon: rock/paper/scissors")
+        await message.channel.send("Choose your weapon: rock/paper/scissors. Best 2 out of 3 wins!")
+
         response = await client.wait_for("message", check=lambda response_message: response_message.author == message.author)
-        if response.content not in weapons:
-            await message.channel.send("Choose one of the weapons i told you could use")
+
+        if response.content.lower() not in weapons:
+            await message.channel.send("Choose one of the weapons I told you could use (rock/paper/scissors)")
             continue
+
         botChoice = randomNumber(0, 2)
         await message.channel.send(weapons[botChoice])
         index = -1
