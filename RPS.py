@@ -14,6 +14,9 @@ async def rockPaperScissors(client : discord.Client, message : discord.Message):
 
         await message.channel.send("Choose your weapon: rock/paper/scissors")
         response = await client.wait_for("message", check=lambda response_message: response_message.author == message.author)
+        if response.content not in weapons:
+            await message.channel.send("Choose one of the weapons i told you could use")
+            continue
         botChoice = randomNumber(0, 2)
         await message.channel.send(weapons[botChoice])
         index = -1
